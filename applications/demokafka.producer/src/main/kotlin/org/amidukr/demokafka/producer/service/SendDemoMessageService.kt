@@ -18,11 +18,8 @@ class SendDemoMessageService {
     @Autowired
     private lateinit var kafkaTemplate: KafkaTemplate<String, String>
 
-    private fun generatePartition() = Random().nextInt(kafkaTopicProperties.partitions)
-    private fun generateId() = Random().nextInt().toString()
-
     fun sendDemoMessage(messageContent: String) {
         logger.info("Sending message $messageContent")
-        kafkaTemplate.send(kafkaTopicProperties.name, generatePartition(), generateId(), messageContent)
+        kafkaTemplate.send(kafkaTopicProperties.name, messageContent)
     }
 }
