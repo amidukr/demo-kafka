@@ -14,6 +14,7 @@ import org.springframework.kafka.support.KafkaHeaders
 import org.springframework.messaging.handler.annotation.Header
 import org.springframework.stereotype.Component
 import java.lang.Exception
+import java.util.*
 
 @Component
 class DemoMessageListener : ConsumerSeekAware {
@@ -21,12 +22,14 @@ class DemoMessageListener : ConsumerSeekAware {
 
     private lateinit var consumerSeekCallback: ConsumerSeekAware.ConsumerSeekCallback
 
+    private val instanceHash = Random().nextInt();
+
     @Autowired
     private lateinit var kafkaTopicProperties: KafkaTopicProperties;
     
     @KafkaListener(topics = ["\${demokafka.topic.name}"])
     fun demoMessageHandler(message: String, @Header(KafkaHeaders.RECEIVED_PARTITION_ID) partitionId: Int) {
-        logger.info("Message retrieved, partitionId = $partitionId, body: $message")
+        logger.info("Message retrieved, instanceHash = $instanceHash, partitionId = $partitionId, body: $message")
     }
 
     override fun registerSeekCallback(callback: ConsumerSeekAware.ConsumerSeekCallback?) {
