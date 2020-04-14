@@ -1,0 +1,20 @@
+set -e
+
+KD_SCRIPT_VARS_FILE=$(dirname $0)/../script-vars.sh
+source $KD_SCRIPT_VARS_FILE
+
+ export KD_TARGET_APPLICATION_VERSION=0.0.1
+
+#---------
+ export KD_TARGET_APPLICATION_NAME=demokafka-producer
+ export KD_TARGET_APPLICATION_PORT=8080
+ export KD_TARGET_APPLICATION_REPLICAS=1
+ $KD_APPLICATION_SCRIPTS_DIRECTORY/install-service.sh
+
+#---------
+ export KD_TARGET_APPLICATION_NAME=demokafka-consumer
+ export KD_TARGET_APPLICATION_PORT=8081
+ export KD_TARGET_APPLICATION_REPLICAS=2
+
+ $KD_APPLICATION_SCRIPTS_DIRECTORY/install-service.sh
+
