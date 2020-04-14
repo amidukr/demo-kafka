@@ -6,13 +6,13 @@ import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RestController
 
-@RestController("demo-message")
+@RestController
 class SendDemoMessageController {
 
     @Autowired
     private lateinit var sendDemoMessageService: SendDemoMessageService;
 
-    @PostMapping("send")
+    @PostMapping("demo-message/send")
     fun sendDemoMessage(@RequestBody messageContent: String) {
         sendDemoMessageService.sendDemoMessage(messageContent)
     }

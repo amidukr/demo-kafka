@@ -10,13 +10,13 @@ import org.springframework.kafka.listener.ConsumerSeekAware
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController("demo-message")
+@RestController
 class ConsumerController {
 
     @Autowired
     private lateinit var demoMessageListener: DemoMessageListener;
 
-    @PostMapping("replay")
+    @PostMapping("demo-message/replay")
     fun replayMessages() {
         demoMessageListener.seekToBeginning();
     }

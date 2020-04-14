@@ -46,7 +46,7 @@ To build application from source gradle build tool is used, all other deployment
 
 Steps to build and deploy are follows:
 1. Install Open JDK 14
-   - Make sure that JAVA_HOME is configure properly
+   - Make sure that JAVA_HOME is configured properly
 2. Install kubernets - scrips were test with Microk8s version for demo deployment
    - Enable k8s coredns addon
 3. Install docker
