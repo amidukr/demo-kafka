@@ -1,6 +1,7 @@
 # demo-kafka
 Demonstration of basic capability of Kafka using Kotlin language
 
+[![Demo View](https://img.youtube.com/vi/v6Tl7mYNz4w/0.jpg)](https://www.youtube.com/watch?v=v6Tl7mYNz4w)
 
 # Overview
 
