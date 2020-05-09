@@ -1,0 +1,12 @@
+# Default values for demokafka-producer.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+image:
+  name: demokafka/demokafka-producer:0.0.1
+
+service:
+  port: 8080
+

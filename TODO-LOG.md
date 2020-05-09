@@ -2,9 +2,8 @@
 Install helm3
 
  microk8s enable helm3	
-
  sudo snap install helm --classic
-
+ microk8s.config view >~/.kube/config
 
 Instructions:
 

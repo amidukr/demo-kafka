@@ -1,0 +1,36 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "deployment.fullname" . }}-deployment
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ include "deployment.fullname" . }}-application
+  template:
+    metadata:
+      labels:
+        app: {{ include "deployment.fullname" . }}-application
+    spec:
+      containers:
+      - name: {{ include "deployment.fullname" . }}
+        image: {{ .Values.image.name }}
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: {{ .Values.service.port }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "deployment.fullname" . }}
+  labels:
+    app: {{ include "deployment.fullname" . }}-service
+spec:
+  ports:
+  - name: http
+    port: 8080
+    targetPort: {{ .Values.service.port }}
+  selector:
+    app: {{ include "deployment.fullname" . }}-application
+
