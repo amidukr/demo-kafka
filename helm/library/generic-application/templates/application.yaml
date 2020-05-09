@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: {{ include "deployment.fullname" . }}
-        image: {{ .Values.image.name }}
+        image: {{ include "deployment.image.fullname" . }}
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: {{ .Values.service.port }}
@@ -29,7 +29,7 @@ metadata:
 spec:
   ports:
   - name: http
-    port: 8080
+    port: 80
     targetPort: {{ .Values.service.port }}
   selector:
     app: {{ include "deployment.fullname" . }}-application
