@@ -1,5 +1,5 @@
 {{- define "deployment.fullname" -}}
-{{- .Release.Name }}-{{- required "generic-application: Values.applicationName is required" .Values.applicationName }}
+{{- .Values.global.env }}-{{- required "generic-application: Values.applicationName is required" .Values.applicationName }}
 {{- end }}
 
 {{- define "deployment.image.fullname" -}}

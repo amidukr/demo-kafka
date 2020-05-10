@@ -7,7 +7,11 @@ Install helm3
 
  helm dependency update ./helm/demokafka/charts/applications/charts/producer/
  helm dependency update ./helm/demokafka/charts/applications/charts/consumer/
- helm install dev-demokafka ./helm/demokafka --dry-run
+ 
+Split application and resource into seperate helm charts
+ 
+ helm install --set-string global.buildVersion=0.0.1 --set-string global.env=dev dev-demokafka-applications ./helm/applications --dry-run
+ helm install --set-string global.buildVersion=0.0.1 --set-string global.env=dev dev-demokafka-resources ./helm/resources --dry-run
 
 Instructions:
 

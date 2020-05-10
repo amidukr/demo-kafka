@@ -3,7 +3,7 @@ set -e
 KD_SCRIPT_VARS_FILE=$(dirname $0)/../script-vars.sh
 source $KD_SCRIPT_VARS_FILE
 
- export KD_TARGET_APPLICATION_VERSION=0.0.1
+ export KD_TARGET_APPLICATION_VERSION=latest
 
 #---------
  export KD_TARGET_APPLICATION_NAME=demokafka-producer
