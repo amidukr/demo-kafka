@@ -3,14 +3,8 @@
 # Declare variables to be passed into your templates.
 
 generic-application:
-  applicationName: consumer
-
-  replicaCount: 2
+  applicationName: demokafka-producer
 
   image:
-    name: demokafka/demokafka-consumer
-
-  service:
-    port: 8081
-
+    name: demokafka/demokafka-producer
 

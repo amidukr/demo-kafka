@@ -19,6 +19,10 @@ spec:
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: {{ .Values.service.port }}
+        env:
+        - name: JAVA_OPTS
+          value: -Denv={{ .Values.global.env }}
+
 ---
 apiVersion: v1
 kind: Service
