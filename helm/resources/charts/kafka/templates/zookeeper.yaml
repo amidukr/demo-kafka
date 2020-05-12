@@ -2,18 +2,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Release.Name }}-zookeeper-deployment-1
+  name: {{ .Values.global.env }}-demokafka-resources-zookeeper-deployment-1
 spec:
   selector:
     matchLabels:
-      app: {{ .Release.Name }}-zookeeper-1
+      app: {{ .Values.global.env }}-demokafka-resources-zookeeper-1
   template:
     metadata:
       labels:
-        app: {{ .Release.Name }}-zookeeper-1
+        app: {{ .Values.global.env }}-demokafka-resources-zookeeper-1
     spec:
       containers:
-      - name: {{ .Release.Name }}-zoo1
+      - name: {{ .Values.global.env }}-demokafka-resources-zoo1
         image: digitalwonderland/zookeeper
         ports:
         - containerPort: 2181
@@ -21,14 +21,14 @@ spec:
         - name: ZOOKEEPER_ID
           value: "1"
         - name: ZOOKEEPER_SERVER_1
-          value: {{ .Release.Name }}-zoo1
+          value: {{ .Values.global.env }}-demokafka-resources-zoo1
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ .Release.Name }}-zoo1
+  name: {{ .Values.global.env }}-demokafka-resources-zoo1
   labels:
-    app: {{ .Release.Name }}-zookeeper-1
+    app: {{ .Values.global.env }}-demokafka-resources-zookeeper-1
 spec:
   ports:
   - name: client
@@ -41,4 +41,5 @@ spec:
     port: 3888
     protocol: TCP
   selector:
-    app: {{ .Release.Name }}-zookeeper-1
+    app: {{ .Values.global.env }}-demokafka-resources-zookeeper-1
+
