@@ -2,16 +2,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Release.Name }}-kafka-broker0
+  name: {{ .Values.global.env }}-demokafka-resources-kafka-broker0
 spec:
   selector:
     matchLabels:
-      app: {{ .Release.Name }}-kafka
+      app: {{ .Values.global.env }}-demokafka-resources-kafka
       id: "0"
   template:
     metadata:
       labels:
-        app: {{ .Release.Name }}-kafka
+        app: {{ .Values.global.env }}-demokafka-resources-kafka
         id: "0"
     spec:
       containers:
@@ -23,9 +23,9 @@ spec:
         - name: KAFKA_ADVERTISED_PORT
           value: "9092"
         - name: KAFKA_ADVERTISED_HOST_NAME
-          value: {{ .Release.Name }}-kafka-service
+          value: {{ .Values.global.env }}-demokafka-resources-kafka-service
         - name: KAFKA_ZOOKEEPER_CONNECT
-          value: {{ .Release.Name }}-zoo1:2181
+          value: {{ .Values.global.env }}-demokafka-resources-zoo1:2181
         - name: KAFKA_BROKER_ID
           value: "0"
         - name: KAFKA_CREATE_TOPICS
@@ -34,14 +34,15 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ .Release.Name }}-kafka-service
+  name: {{ .Values.global.env }}-demokafka-resources-kafka-service
   labels:
-    name: {{ .Release.Name }}-kafka
+    name: {{ .Values.global.env }}-demokafka-resources-kafka
 spec:
   ports:
   - port: 9092
     name: kafka-port
     protocol: TCP
   selector:
-    app: {{ .Release.Name }}-kafka
+    app: {{ .Values.global.env }}-demokafka-resources-kafka
     id: "0"
+
